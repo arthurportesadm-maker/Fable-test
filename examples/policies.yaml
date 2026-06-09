@@ -1,0 +1,52 @@
+# Tracerail example policy file.
+# Policies are evaluated top-down; the first match wins.
+version: 1
+default: allow
+
+# Values of these argument keys are replaced with [REDACTED] in the audit
+# trail and in approval requests (the tool still receives the real value).
+redact:
+  - password
+  - api_key
+  - token
+
+policies:
+  # Hard block: agents never touch production databases directly.
+  - name: block-prod-db
+    match:
+      tool: "db_*"
+      args:
+        env: "prod*"
+    effect: deny
+    reason: "Direct production database access is forbidden for agents."
+
+  # Refunds up to $100 are fine; anything above needs a human.
+  - name: refund-cap
+    match:
+      tool: issue_refund
+    effect: allow
+    constraints:
+      max_amount:
+        field: amount
+        limit: 100
+    on_violation: require_approval
+    timeout_seconds: 3600
+    on_timeout: deny
+
+  # Outbound email always requires sign-off.
+  - name: gate-outbound-email
+    match:
+      tool: send_email
+    effect: require_approval
+    reason: "Outbound communication requires human review."
+    timeout_seconds: 1800
+    on_timeout: deny
+
+  # Keep runaway loops in check: at most 20 searches per session.
+  - name: search-rate-cap
+    match:
+      tool: web_search
+    effect: allow
+    constraints:
+      max_calls: 20
+    on_violation: deny
