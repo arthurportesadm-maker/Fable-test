@@ -125,114 +125,204 @@
     :root {
       --bg: #0B1220;
       --surface: #131C2E;
+      --surface-2: #0e1626;
       --text: #E6EDF7;
       --primary: #2EE6A6;
       --amber: #F5B83D;
       --red: #E5484D;
       --neutral: #8B98AC;
       --border: #243049;
-      --radius: 12px;
+      --border-hover: #36456a;
+      --radius: 14px;
       --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+      --ease: cubic-bezier(.2,.6,.2,1);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       font-size: 17px;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a { color: var(--primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-    h1, h2, h3 { line-height: 1.2; color: var(--text); }
-    h1 { font-size: clamp(2rem, 5vw, 3.1rem); letter-spacing: -0.02em; margin: 0 0 1rem; }
-    h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); letter-spacing: -0.01em; margin: 0 0 1rem; }
-    h3 { font-size: 1.2rem; margin: 0 0 0.5rem; }
+    .narrow { max-width: 820px; }
+    h1, h2, h3 { color: var(--text); }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.04;
+      letter-spacing: -0.035em; font-weight: 800; margin: 0 0 1.2rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.12;
+      letter-spacing: -0.025em; font-weight: 750; margin: 0 0 1rem;
+    }
+    h3 { font-size: 1.18rem; letter-spacing: -0.01em; font-weight: 650; margin: 0 0 0.5rem; line-height: 1.25; }
     p { margin: 0 0 1rem; }
     .muted { color: var(--neutral); }
+    .eyebrow {
+      font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--primary); margin: 0 0 1rem; font-weight: 600;
+    }
 
     /* Skip link */
     .skip {
       position: absolute; left: -999px; top: 0;
-      background: var(--primary); color: var(--bg);
-      padding: 8px 16px; border-radius: 0 0 8px 0; z-index: 100; font-weight: 600;
+      background: var(--primary); color: #062417;
+      padding: 8px 16px; border-radius: 0 0 8px 0; z-index: 200; font-weight: 700;
     }
     .skip:focus { left: 0; }
 
     /* Buttons */
     .btn {
-      display: inline-block; padding: 0.7rem 1.3rem; border-radius: 10px;
-      font-weight: 600; font-size: 0.98rem; border: 1px solid transparent;
-      cursor: pointer; transition: opacity .15s, background .15s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.5rem; border-radius: 11px;
+      font-weight: 650; font-size: 1rem; border: 1px solid transparent;
+      cursor: pointer; transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease);
     }
-    .btn:hover { text-decoration: none; opacity: 0.92; }
-    .btn-primary { background: var(--primary); color: #062417; }
+    .btn:hover { text-decoration: none; transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--primary); color: #062417;
+      box-shadow: 0 0 0 1px rgba(46,230,166,.4), 0 8px 30px -8px rgba(46,230,166,.55);
+    }
+    .btn-primary:hover { box-shadow: 0 0 0 1px rgba(46,230,166,.6), 0 14px 44px -10px rgba(46,230,166,.7); }
     .btn-secondary { background: transparent; color: var(--text); border-color: var(--border); }
-    .btn-secondary:hover { border-color: var(--neutral); }
+    .btn-secondary:hover { border-color: var(--border-hover); }
+    .btn-ghost {
+      background: transparent; color: var(--neutral); border: none; padding: 0.8rem 0.4rem;
+      font-weight: 600;
+    }
+    .btn-ghost:hover { color: var(--text); transform: none; }
 
     /* Header */
     header.site {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(11,18,32,0.85); backdrop-filter: blur(8px);
+      background: rgba(11,18,32,0.78); backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
     .nav { display: flex; align-items: center; gap: 1.5rem; padding: 0.85rem 0; }
-    .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.15rem; color: var(--text); }
+    .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 750; font-size: 1.12rem; color: var(--text); letter-spacing: -0.01em; }
+    .brand:hover { text-decoration: none; }
     .brand img { width: 28px; height: 28px; display: block; }
     .nav-links { display: flex; gap: 1.4rem; margin-left: auto; align-items: center; }
-    .nav-links a { color: var(--neutral); font-weight: 500; font-size: 0.95rem; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links .btn { color: #062417; }
+    .nav-links a:not(.btn) { color: var(--neutral); font-weight: 500; font-size: 0.95rem; }
+    .nav-links a:not(.btn):hover { color: var(--text); text-decoration: none; }
+    .nav-links .btn { padding: 0.5rem 1.1rem; font-size: 0.92rem; }
 
     /* Sections */
-    section { padding: 4.5rem 0; }
+    section { padding: clamp(3.5rem, 7vw, 6rem) 0; position: relative; }
     .section-border { border-top: 1px solid var(--border); }
 
     /* Hero */
-    .hero { padding-top: 5rem; }
-    .hero .sub { font-size: 1.2rem; color: var(--neutral); max-width: 720px; margin-bottom: 1.8rem; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2.8rem; }
+    .hero {
+      text-align: center; padding-top: clamp(4rem, 9vw, 7rem); overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .hero-grid {
+      position: absolute; inset: -2px 0 0 0; height: 100%;
+      background-image:
+        linear-gradient(rgba(139,152,172,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139,152,172,0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 80%);
+    }
+    .hero-glow {
+      position: absolute; left: 50%; top: -10%; transform: translateX(-50%);
+      width: 900px; height: 600px; max-width: 130vw;
+      background: radial-gradient(ellipse at center, rgba(46,230,166,0.16) 0%, rgba(46,230,166,0.05) 35%, transparent 70%);
+      filter: blur(10px);
+    }
+    .hero .wrap { position: relative; z-index: 1; }
+    .hero .sub {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--neutral);
+      max-width: 680px; margin: 0 auto 2rem;
+    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; align-items: center; margin-bottom: 1.1rem; }
+    .hero-micro {
+      font-family: var(--mono); font-size: 0.82rem; color: var(--neutral);
+      margin-bottom: 3rem;
+    }
+    .hero-micro .sep { opacity: 0.5; margin: 0 0.5rem; }
+    .hero-micro code { color: var(--text); }
 
     /* Terminal */
     .terminal {
+      max-width: 760px; margin: 0 auto; text-align: left;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden; font-family: var(--mono); font-size: 0.86rem;
+      border-radius: var(--radius); overflow: hidden;
+      font-family: var(--mono); font-size: clamp(0.74rem, 1.6vw, 0.88rem);
+      box-shadow: 0 30px 80px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(46,230,166,.04);
     }
     .term-bar {
       display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--border); background: #0e1626;
+      padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--border); background: var(--surface-2);
     }
     .term-bar .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
     .dot.r { background: var(--red); } .dot.a { background: var(--amber); } .dot.g { background: var(--primary); }
     .term-title { margin-left: 0.6rem; color: var(--neutral); font-size: 0.78rem; }
-    .term-body { padding: 1.1rem 1.2rem; overflow-x: auto; line-height: 1.7; }
-    .term-body pre { margin: 0; white-space: pre; font-family: var(--mono); }
+    .term-body {
+      padding: 1.2rem 1.3rem; overflow-x: auto; line-height: 1.85;
+      min-height: 280px;
+    }
+    .term-body .line { white-space: pre-wrap; word-break: break-word; }
     .prompt { color: var(--primary); }
     .cmd { color: var(--text); }
     .comment { color: var(--neutral); }
-    .out-amber { color: var(--amber); }
-    .out-red { color: var(--red); }
     .out-green { color: var(--primary); }
-    .copy-btn {
-      margin-left: auto; background: transparent; border: 1px solid var(--border);
-      color: var(--neutral); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 6px; cursor: pointer;
-      font-family: var(--mono);
+    .meta { color: var(--neutral); }
+    .pill {
+      display: inline-block; font-weight: 700; font-size: 0.72em;
+      padding: 0.1em 0.6em; border-radius: 999px; letter-spacing: 0.04em;
+      vertical-align: middle; margin-right: 0.5em;
     }
-    .copy-btn:hover { color: var(--text); border-color: var(--neutral); }
+    .pill-allow { color: var(--primary); background: rgba(46,230,166,0.14); border: 1px solid rgba(46,230,166,0.4); }
+    .pill-deny { color: var(--red); background: rgba(229,72,77,0.14); border: 1px solid rgba(229,72,77,0.4); }
+    .pill-held { color: var(--amber); background: rgba(245,184,61,0.14); border: 1px solid rgba(245,184,61,0.45); animation: pulse 1.6s var(--ease) infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(245,184,61,0.5); } 50% { box-shadow: 0 0 0 5px rgba(245,184,61,0); } }
+    .caret {
+      display: inline-block; width: 0.55em; height: 1.05em; background: var(--primary);
+      vertical-align: -0.18em; margin-left: 1px; animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Proof bar */
+    .proof {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .proof-item { background: var(--bg); padding: 1.3rem 1.4rem; }
+    .proof-item .pt { font-weight: 650; font-size: 0.98rem; color: var(--text); }
+    .proof-item .ps { font-family: var(--mono); font-size: 0.74rem; color: var(--neutral); margin-top: 0.35rem; }
 
     /* Cards grid */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.5rem;
+      border-radius: var(--radius); padding: 1.6rem;
+      transition: border-color .18s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease);
+      display: flex; flex-direction: column;
     }
-    .card .role { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--neutral); margin-bottom: 0.5rem; }
-    .card ul { margin: 0.6rem 0 0; padding-left: 1.1rem; color: var(--neutral); }
-    .card li { margin-bottom: 0.3rem; }
+    .card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 18px 40px -22px rgba(0,0,0,.7); }
+    .card .role {
+      font-family: var(--mono); font-size: 0.76rem; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--primary); margin-bottom: 0.6rem; font-weight: 600;
+    }
+    .card ul { margin: 0.7rem 0 0; padding-left: 1.1rem; color: var(--neutral); font-size: 0.95rem; }
+    .card li { margin-bottom: 0.35rem; }
+    .card-consequence {
+      margin-top: auto; padding-top: 1.1rem; margin-bottom: 0;
+      font-size: 0.88rem; color: var(--neutral);
+      border-top: 1px solid var(--border);
+    }
+    .card-consequence strong { color: var(--amber); font-weight: 600; }
+    .card-consequence::before { content: "↳ "; color: var(--neutral); }
 
     /* AEO definition block */
     .aeo {
@@ -243,17 +333,41 @@
     .aeo p:last-child { margin-bottom: 0; }
 
     /* How it works */
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+    .step { display: flex; flex-direction: column; }
     .step .num {
-      width: 34px; height: 34px; border-radius: 50%; background: rgba(46,230,166,0.12);
+      width: 34px; height: 34px; border-radius: 9px; background: rgba(46,230,166,0.12);
       color: var(--primary); display: flex; align-items: center; justify-content: center;
-      font-weight: 700; margin-bottom: 0.8rem; font-family: var(--mono);
+      font-weight: 700; margin-bottom: 0.9rem; font-family: var(--mono); font-size: 0.95rem;
     }
-    .snippet {
-      background: #0e1626; border: 1px solid var(--border); border-radius: 8px;
-      padding: 0.7rem 0.85rem; font-family: var(--mono); font-size: 0.78rem; color: var(--neutral);
-      margin-top: 0.9rem; overflow-x: auto; white-space: pre; line-height: 1.6;
+    .step .muted { font-size: 0.96rem; }
+    .codeblock {
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+      margin-top: auto; position: relative; overflow: hidden;
     }
+    .codeblock-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.4rem 0.5rem 0.4rem 0.85rem; border-bottom: 1px solid var(--border);
+    }
+    .codeblock-head .fname { font-family: var(--mono); font-size: 0.72rem; color: var(--neutral); }
+    .codeblock pre {
+      margin: 0; padding: 0.85rem 0.95rem; font-family: var(--mono); font-size: 0.78rem;
+      color: var(--text); overflow-x: auto; line-height: 1.65; white-space: pre;
+    }
+    .copy-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--neutral); font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 6px; cursor: pointer;
+      font-family: var(--mono); transition: color .15s var(--ease), border-color .15s var(--ease);
+    }
+    .copy-btn:hover { color: var(--text); border-color: var(--border-hover); }
+    /* manual syntax highlight */
+    .c-key { color: var(--amber); }
+    .c-str { color: var(--primary); }
+    .c-num { color: #7fb0ff; }
+    .c-com { color: var(--neutral); }
+    .c-cmd { color: var(--text); }
+    .c-flag { color: #7fb0ff; }
+    .c-prompt { color: var(--primary); }
 
     /* Table */
     .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
@@ -261,6 +375,7 @@
     th, td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
     thead th { background: var(--surface); font-size: 0.85rem; color: var(--text); }
     thead th:first-child { color: var(--neutral); font-weight: 500; }
+    tbody tr:last-child th, tbody tr:last-child td { border-bottom: none; }
     tbody th { font-weight: 500; color: var(--text); }
     td.tr { color: var(--text); }
     .yes { color: var(--primary); font-weight: 600; }
@@ -268,31 +383,77 @@
     .partial { color: var(--amber); }
     .col-tracerail { background: rgba(46,230,166,0.06); }
 
-    /* FAQ */
-    .faq-item { border-bottom: 1px solid var(--border); padding: 1.4rem 0; }
+    /* FAQ accordion */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
     .faq-item:first-child { border-top: 1px solid var(--border); }
-    .faq-item p { color: var(--neutral); margin-bottom: 0; }
+    .faq-item summary {
+      list-style: none; cursor: pointer; padding: 1.3rem 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-size: 1.1rem; font-weight: 650; color: var(--text); letter-spacing: -0.01em;
+      transition: color .15s var(--ease);
+    }
+    .faq-item summary:hover { color: var(--primary); }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: ""; flex: 0 0 auto; width: 11px; height: 11px;
+      border-right: 2px solid var(--neutral); border-bottom: 2px solid var(--neutral);
+      transform: rotate(45deg); transition: transform .2s var(--ease); margin-right: 4px;
+    }
+    .faq-item[open] summary::after { transform: rotate(-135deg); }
+    .faq-item .faq-body { padding: 0 0 1.4rem; }
+    .faq-item .faq-body p { color: var(--neutral); margin-bottom: 0; }
+
+    /* Risk reversal */
+    .risk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 0 0 2.5rem; }
+    .risk-item {
+      border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem;
+      background: var(--surface);
+    }
+    .risk-item .rt { font-weight: 650; font-size: 0.95rem; }
+    .risk-item .rs { font-size: 0.84rem; color: var(--neutral); margin-top: 0.25rem; }
 
     /* Final CTA */
     .cta-final {
+      position: relative; overflow: hidden;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2.8rem; text-align: center;
+      border-radius: var(--radius); padding: clamp(2rem, 5vw, 3.2rem); text-align: center;
     }
-    .cta-final .hero-cta { justify-content: center; margin-bottom: 0; }
+    .cta-final::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(46,230,166,0.1), transparent 70%);
+    }
+    .cta-final > * { position: relative; }
+    .cta-final .hero-cta { margin-bottom: 0; }
 
     /* Footer */
     footer.site { border-top: 1px solid var(--border); padding: 3rem 0; color: var(--neutral); }
     .foot-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
-    .foot-tag { font-weight: 600; color: var(--text); font-size: 1.05rem; }
+    .foot-tag { font-weight: 650; color: var(--text); font-size: 1.05rem; letter-spacing: -0.01em; }
     .foot-links { display: flex; gap: 1.3rem; flex-wrap: wrap; }
     .foot-links a { color: var(--neutral); font-size: 0.92rem; }
     .foot-links a:hover { color: var(--text); }
     .foot-meta { font-size: 0.85rem; margin-top: 1.2rem; }
 
+    [id] { scroll-margin-top: 80px; }
+
+    @media (max-width: 880px) {
+      .proof { grid-template-columns: repeat(2, 1fr); }
+      .risk-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 800px) {
       .grid-3, .steps { grid-template-columns: 1fr; }
       .nav-links a:not(.btn) { display: none; }
-      section { padding: 3rem 0; }
+    }
+    @media (max-width: 480px) {
+      .risk-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+      .caret { display: none; }
     }
   </style>
 </head>
@@ -321,72 +482,160 @@
 
     <!-- Hero -->
     <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+      </div>
       <div class="wrap">
+        <p class="eyebrow">Open-source AI agent control plane</p>
         <h1>Prove what your agents did.</h1>
-        <p class="sub">Tracerail is an open-source control plane for AI agent actions: a drop-in MCP proxy that adds tamper-evident audit trails, declarative policies, and human approval gates — without changing a line of agent code.</p>
+        <p class="sub">A drop-in MCP proxy that enforces declarative policies, holds sensitive tool calls for human approval, and records every action in a tamper-evident, hash-chained audit trail — without changing a line of agent code.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="https://github.com/arthurportesadm-maker/fable-test">Get started on GitHub</a>
-          <a class="btn btn-secondary" href="https://github.com/arthurportesadm-maker/fable-test#readme">Read the docs</a>
+          <a class="btn btn-ghost" href="mailto:hello@tracerail.dev?subject=Tracerail">Talk to a founder →</a>
         </div>
+        <p class="hero-micro">
+          <code>pip install tracerail</code><span class="sep">·</span>Apache-2.0<span class="sep">·</span>runs entirely on your infra
+        </p>
 
-        <div class="terminal" role="img" aria-label="Terminal showing the Tracerail proxy command and a pending refund approval">
+        <div class="terminal">
           <div class="term-bar">
             <span class="dot r"></span><span class="dot a"></span><span class="dot g"></span>
             <span class="term-title">tracerail</span>
-            <button class="copy-btn" type="button" id="copyBtn" data-cmd="tracerail proxy --policies policies.yaml -- npx your-mcp-server">Copy command</button>
+            <button class="copy-btn" type="button" style="margin-left:auto" data-copy="tracerail proxy --policies policies.yaml -- npx payments-server">Copy command</button>
           </div>
-          <div class="term-body">
-<pre><span class="comment"># Wrap any MCP server. No agent code changes.</span>
-<span class="prompt">$</span> <span class="cmd">tracerail proxy --policies policies.yaml -- npx your-mcp-server</span>
-<span class="out-green">✓ proxy listening · policies loaded · audit chain verified</span>
+          <div class="term-body" id="term" aria-label="Animated terminal demonstrating the Tracerail proxy enforcing policy on agent tool calls" role="img"></div>
+        </div>
+      </div>
+    </section>
 
-<span class="prompt">$</span> <span class="cmd">tracerail approvals</span>
-<span class="out-amber">PENDING  #A-1042  payments.refund</span>
-  amount      <span class="out-amber">$420.00</span>
-  reason      "customer reported double charge"
-  requested   2026-06-09 14:03:11 UTC
-  policy      refund &gt; $250 requires human approval
-  <span class="comment">approve:</span> tracerail approvals approve A-1042
-  <span class="comment">deny:   </span> tracerail approvals deny A-1042</pre>
+    <!-- Proof bar -->
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="proof">
+          <div class="proof-item">
+            <div class="pt">SHA-256 hash-chained log</div>
+            <div class="ps">tamper-evident by construction</div>
+          </div>
+          <div class="proof-item">
+            <div class="pt">Works with any MCP server</div>
+            <div class="ps">transparent stdio proxy</div>
+          </div>
+          <div class="proof-item">
+            <div class="pt">100% open source</div>
+            <div class="ps">audit the auditor · Apache-2.0</div>
+          </div>
+          <div class="proof-item">
+            <div class="pt">Your data never leaves your infra</div>
+            <div class="ps">self-hosted, no calls home</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Decision-maker band -->
+    <!-- Decision-maker band: problem / agitation -->
     <section class="section-border" aria-labelledby="dm-heading">
       <div class="wrap">
-        <h2 id="dm-heading">Built for the people who own the risk</h2>
+        <p class="eyebrow">The risk you already own</p>
+        <h2 id="dm-heading" style="max-width:760px">When the auditor asks, “we have traces somewhere” is not an answer.</h2>
+        <p class="muted" style="max-width:680px;margin-bottom:2.2rem">Agents are starting to move money, change infrastructure, and touch sensitive data. The question stops being “can the agent do it?” and becomes “what exactly did it do, under which policy, and who approved it?”</p>
         <div class="grid-3">
           <div class="card">
             <div class="role">VP Engineering</div>
             <h3>Unblock production</h3>
-            <p class="muted">Ship agents that take real actions without waiting on a custom guardrail project. Policies and approvals give you a safe path to production now.</p>
+            <p class="muted">Agents stuck in pilot because no one will sign off on letting them take real actions. Gate the risky calls — not the whole agent — and ship with a safe path to prod.</p>
             <ul>
               <li>Gate risky actions, not whole agents</li>
               <li>Spend caps and rate caps out of the box</li>
               <li>Roll out per-tool, per-team</li>
             </ul>
+            <p class="card-consequence">Stay blocked and the pilot quietly becomes <strong>shelfware</strong>.</p>
           </div>
           <div class="card">
             <div class="role">CISO / Compliance</div>
-            <h3>Compliance-grade records</h3>
-            <p class="muted">A verifiable record of every agent action, ready for auditors.</p>
+            <h3>Evidence auditors accept</h3>
+            <p class="muted">Map controls to the frameworks you already answer to. Every action lands in a hash-chained SHA-256 log that is third-party verifiable — not a mutable trace you have to vouch for.</p>
             <ul>
-              <li>EU AI Act Art. 12 logging</li>
-              <li>SOC 2 CC7 control mapping</li>
-              <li>Hash-chain verify on demand</li>
+              <li>EU AI Act Art. 12 record-keeping</li>
+              <li>EU AI Act Art. 14 human oversight</li>
+              <li>SOC 2 CC7 · hash-chain verify on demand</li>
             </ul>
+            <p class="card-consequence">One unaudited tool call becomes an <strong>audit finding</strong>.</p>
           </div>
           <div class="card">
             <div class="role">Platform Engineering</div>
             <h3>5-minute drop-in</h3>
-            <p class="muted">Start your existing MCP server through the proxy and point the agent at it. No SDK, no rewrites.</p>
+            <p class="muted">Start your existing MCP server through the proxy and point the agent at it. No SDK, no rewrites, zero agent code changes. Policies are declarative YAML you keep in version control.</p>
             <ul>
               <li>Works with any MCP server</li>
               <li>Declarative YAML, version-controlled</li>
               <li>Self-hosted, Apache-2.0</li>
             </ul>
+            <p class="card-consequence">A bespoke guardrail project becomes <strong>quarters of glue code</strong> you maintain.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section-border" id="how-it-works" aria-labelledby="how-heading">
+      <div class="wrap">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-heading">Three steps to govern every agent action</h2>
+        <div class="steps" style="margin-top:2rem">
+          <div class="step">
+            <div class="num" aria-hidden="true">1</div>
+            <h3>Declare policy in YAML</h3>
+            <p class="muted">Allow or deny tools, set spend caps and rate caps, and require human approval for sensitive actions — all first-match-wins and version-controlled.</p>
+            <div class="codeblock">
+              <div class="codeblock-head">
+                <span class="fname">policies.yaml</span>
+                <button class="copy-btn" type="button" data-copy="rules:
+  - tool: payments.refund
+    when: arguments.amount > 250
+    effect: require_approval
+  - tool: payments.*
+    effect: allow
+    max_amount: 5000">Copy</button>
+              </div>
+<pre><span class="c-key">rules</span>:
+  - <span class="c-key">tool</span>: payments.refund
+    <span class="c-key">when</span>: arguments.amount &gt; <span class="c-num">250</span>
+    <span class="c-key">effect</span>: <span class="c-str">require_approval</span>
+  - <span class="c-key">tool</span>: <span class="c-str">payments.*</span>
+    <span class="c-key">effect</span>: <span class="c-str">allow</span>
+    <span class="c-key">max_amount</span>: <span class="c-num">5000</span></pre>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num" aria-hidden="true">2</div>
+            <h3>Approve from the CLI</h3>
+            <p class="muted">Gated actions pause and wait for a human. An operator reviews the request — with sensitive fields redacted — and approves or denies by ID.</p>
+            <div class="codeblock">
+              <div class="codeblock-head">
+                <span class="fname">operator shell</span>
+                <button class="copy-btn" type="button" data-copy="tracerail approvals
+tracerail approve A-1042">Copy</button>
+              </div>
+<pre><span class="c-prompt">$</span> <span class="c-cmd">tracerail approvals</span>
+<span class="c-com">PENDING  A-1042  payments.refund</span>
+<span class="c-prompt">$</span> <span class="c-cmd">tracerail approve A-1042</span>
+<span class="c-str">approved</span> <span class="c-com">· agent unblocked</span></pre>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num" aria-hidden="true">3</div>
+            <h3>Verify the chain</h3>
+            <p class="muted">Every call — allowed, denied, or escalated — is appended to a hash-chained log. Re-verify the whole chain end to end at any time.</p>
+            <div class="codeblock">
+              <div class="codeblock-head">
+                <span class="fname">operator shell</span>
+                <button class="copy-btn" type="button" data-copy="tracerail verify">Copy</button>
+              </div>
+<pre><span class="c-prompt">$</span> <span class="c-cmd">tracerail verify</span>
+<span class="c-str">OK</span><span class="c-cmd">: audit chain intact</span>
+<span class="c-com"># SHA-256 · every link checked</span></pre>
+            </div>
           </div>
         </div>
       </div>
@@ -394,7 +643,7 @@
 
     <!-- AEO definition -->
     <section class="section-border" aria-labelledby="aeo-heading">
-      <div class="wrap">
+      <div class="wrap narrow">
         <h2 id="aeo-heading">What is an AI agent control plane?</h2>
         <div class="aeo">
           <p>An AI agent control plane is a layer that sits between an AI agent and the tools it can use, governing every action the agent takes — deciding what is allowed, pausing sensitive actions for human approval, and recording an auditable trail of what happened. Unlike observability tools that only watch and report after the fact, a control plane enforces policy in real time and produces evidence you can verify.</p>
@@ -403,44 +652,10 @@
       </div>
     </section>
 
-    <!-- How it works -->
-    <section class="section-border" id="how-it-works" aria-labelledby="how-heading">
-      <div class="wrap">
-        <h2 id="how-heading">How it works</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="num" aria-hidden="true">1</div>
-            <h3>Wrap any MCP server</h3>
-            <p class="muted">Launch your existing MCP server behind the Tracerail proxy and point your agent at the proxy. Nothing in your agent changes.</p>
-            <div class="snippet">tracerail proxy \
-  --policies policies.yaml \
-  -- npx your-mcp-server</div>
-          </div>
-          <div class="step">
-            <div class="num" aria-hidden="true">2</div>
-            <h3>Declare policies in YAML</h3>
-            <p class="muted">Allow or deny tools, set spend caps and rate caps, and require approval for sensitive actions — all version-controlled.</p>
-            <div class="snippet">rules:
-  - tool: payments.refund
-    when: amount > 250
-    require: human_approval
-  - spend_cap: $5000 / day</div>
-          </div>
-          <div class="step">
-            <div class="num" aria-hidden="true">3</div>
-            <h3>Approve &amp; verify</h3>
-            <p class="muted">Gated actions wait for a human. Every action lands in a hash-chained log you can verify end to end at any time.</p>
-            <div class="snippet">tracerail approvals approve A-1042
-tracerail audit verify
-# ✓ chain intact · 8,412 entries</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Comparison table -->
     <section class="section-border" id="compare" aria-labelledby="compare-heading">
       <div class="wrap">
+        <p class="eyebrow">Honest comparison</p>
         <h2 id="compare-heading">How Tracerail compares</h2>
         <p class="muted">Tracerail solves a different problem than tracing or AppSec tools. Most teams use them together.</p>
         <div class="table-wrap">
@@ -498,56 +713,76 @@ tracerail audit verify
 
     <!-- FAQ -->
     <section class="section-border" id="faq" aria-labelledby="faq-heading">
-      <div class="wrap">
+      <div class="wrap narrow">
+        <p class="eyebrow">FAQ</p>
         <h2 id="faq-heading">Frequently asked questions</h2>
 
-        <div class="faq-item">
-          <h3>What does Tracerail do?</h3>
-          <p>Tracerail is a control plane for AI agent actions. It sits between your agent and its tools as a drop-in MCP proxy, recording every action in a tamper-evident audit trail, enforcing declarative YAML policies, and pausing sensitive actions for human approval.</p>
-        </div>
+        <details class="faq-item" open>
+          <summary>What does Tracerail do?</summary>
+          <div class="faq-body"><p>Tracerail is a control plane for AI agent actions. It sits between your agent and its tools as a drop-in MCP proxy, recording every action in a tamper-evident audit trail, enforcing declarative YAML policies, and pausing sensitive actions for human approval.</p></div>
+        </details>
 
-        <div class="faq-item">
-          <h3>How is it different from LangSmith or Langfuse?</h3>
-          <p>LangSmith and Langfuse are observability and tracing tools: they help you see and debug what your agents did. Tracerail is a control plane: it can stop, gate, and prove actions in real time with policy enforcement, human approval gates, and a tamper-evident audit chain. The two are complementary — observe with one, enforce and prove with the other.</p>
-        </div>
+        <details class="faq-item">
+          <summary>How is it different from LangSmith or Langfuse?</summary>
+          <div class="faq-body"><p>LangSmith and Langfuse are observability and tracing tools: they help you see and debug what your agents did. Tracerail is a control plane: it can stop, gate, and prove actions in real time with policy enforcement, human approval gates, and a tamper-evident audit chain. The two are complementary — observe with one, enforce and prove with the other.</p></div>
+        </details>
 
-        <div class="faq-item">
-          <h3>Does it require changing my agent's code?</h3>
-          <p>No. Tracerail is a drop-in proxy for any MCP server. You start your existing MCP server through the Tracerail proxy and point your agent at the proxy. No SDK, no code changes, and no rewrites to your agent.</p>
-        </div>
+        <details class="faq-item">
+          <summary>Does it require changing my agent's code?</summary>
+          <div class="faq-body"><p>No. Tracerail is a drop-in proxy for any MCP server. You start your existing MCP server through the Tracerail proxy and point your agent at the proxy. No SDK, no code changes, and no rewrites to your agent.</p></div>
+        </details>
 
-        <div class="faq-item">
-          <h3>How does the tamper-evident audit trail work?</h3>
-          <p>Every recorded action is hashed together with the hash of the previous entry, forming a hash chain. Changing or deleting any past entry breaks every hash that follows it, so tampering is detectable. You can run a verify command at any time to confirm the chain is intact end to end.</p>
-        </div>
+        <details class="faq-item">
+          <summary>How does the tamper-evident audit trail work?</summary>
+          <div class="faq-body"><p>Every recorded action is hashed together with the hash of the previous entry, forming a hash chain. Changing or deleting any past entry breaks every hash that follows it, so tampering is detectable. You can run a verify command at any time to confirm the chain is intact end to end.</p></div>
+        </details>
 
-        <div class="faq-item">
-          <h3>Does Tracerail help with EU AI Act or SOC 2 compliance?</h3>
-          <p>It is built to support them. Tracerail's automatic, tamper-evident logging maps to EU AI Act Article 12 record-keeping requirements and to SOC 2 CC7 monitoring controls. It produces verifiable exports you can hand to auditors. Tracerail is tooling, not legal advice, but it gives you the evidence those frameworks expect.</p>
-        </div>
+        <details class="faq-item">
+          <summary>Does Tracerail help with EU AI Act or SOC 2 compliance?</summary>
+          <div class="faq-body"><p>It is built to support them. Tracerail's automatic, tamper-evident logging maps to EU AI Act Article 12 record-keeping requirements and to SOC 2 CC7 monitoring controls. It produces verifiable exports you can hand to auditors. Tracerail is tooling, not legal advice, but it gives you the evidence those frameworks expect.</p></div>
+        </details>
 
-        <div class="faq-item">
-          <h3>Is it open source and self-hosted?</h3>
-          <p>Yes. Tracerail is released under the Apache-2.0 license and runs entirely in your own environment. Your agent traffic, policies, and audit data never have to leave your infrastructure.</p>
-        </div>
+        <details class="faq-item">
+          <summary>Is it open source and self-hosted?</summary>
+          <div class="faq-body"><p>Yes. Tracerail is released under the Apache-2.0 license and runs entirely in your own environment. Your agent traffic, policies, and audit data never have to leave your infrastructure.</p></div>
+        </details>
 
-        <div class="faq-item">
-          <h3>What is MCP?</h3>
-          <p>MCP, the Model Context Protocol, is an open standard for connecting AI agents to tools and data sources. Because Tracerail speaks MCP, it works as a transparent proxy in front of any MCP-compatible server, which is how it adds policy, approvals, and audit without code changes.</p>
-        </div>
+        <details class="faq-item">
+          <summary>What is MCP?</summary>
+          <div class="faq-body"><p>MCP, the Model Context Protocol, is an open standard for connecting AI agents to tools and data sources. Because Tracerail speaks MCP, it works as a transparent proxy in front of any MCP-compatible server, which is how it adds policy, approvals, and audit without code changes.</p></div>
+        </details>
       </div>
     </section>
 
-    <!-- Final CTA -->
+    <!-- Risk reversal + final CTA -->
     <section class="section-border" aria-labelledby="cta-heading">
       <div class="wrap">
+        <div class="risk-grid">
+          <div class="risk-item">
+            <div class="rt">Auditable by design</div>
+            <div class="rs">100% open source — read every line.</div>
+          </div>
+          <div class="risk-item">
+            <div class="rt">Runs local / air-gapped</div>
+            <div class="rs">Your infra. No calls home.</div>
+          </div>
+          <div class="risk-item">
+            <div class="rt">No lock-in</div>
+            <div class="rs">Plain JSONL log, standard MCP.</div>
+          </div>
+          <div class="risk-item">
+            <div class="rt">Apache-2.0</div>
+            <div class="rs">Permissive. Fork it if you want.</div>
+          </div>
+        </div>
         <div class="cta-final">
-          <h2 id="cta-heading">Put your agents on the record</h2>
-          <p class="muted" style="max-width:560px;margin:0 auto 1.6rem">Start with the proxy in five minutes, or talk to us about a design partnership.</p>
+          <h2 id="cta-heading">Put your agents on the record.</h2>
+          <p class="muted" style="max-width:560px;margin:0 auto 1.8rem">Install the proxy in five minutes and ship agents you can prove. Or reach out and we'll help you wire it up.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="https://github.com/arthurportesadm-maker/fable-test">Get started on GitHub</a>
-            <a class="btn btn-secondary" href="mailto:hello@tracerail.dev?subject=Tracerail%20design%20partnership">Talk to us about design partnership</a>
+            <a class="btn btn-ghost" href="mailto:hello@tracerail.dev?subject=Tracerail">Talk to a founder →</a>
           </div>
+          <p class="hero-micro" style="margin:1.3rem 0 0"><code>pip install tracerail</code><span class="sep">·</span>Apache-2.0<span class="sep">·</span>runs entirely on your infra</p>
         </div>
       </div>
     </section>
@@ -572,16 +807,83 @@ tracerail audit verify
   </footer>
 
   <script>
+    // Copy buttons
     (function () {
-      var btn = document.getElementById('copyBtn');
-      if (!btn || !navigator.clipboard) return;
-      btn.addEventListener('click', function () {
-        navigator.clipboard.writeText(btn.getAttribute('data-cmd')).then(function () {
-          var prev = btn.textContent;
-          btn.textContent = 'Copied';
-          setTimeout(function () { btn.textContent = prev; }, 1600);
+      if (!navigator.clipboard) return;
+      document.querySelectorAll('[data-copy]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+            var prev = btn.textContent;
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = prev; }, 1600);
+          });
         });
       });
+    })();
+
+    // Animated terminal
+    (function () {
+      var el = document.getElementById('term');
+      if (!el) return;
+
+      var finalHTML =
+        '<div class="line"><span class="comment"># Wrap any MCP server. No agent code changes.</span></div>' +
+        '<div class="line"><span class="prompt">$</span> <span class="cmd">tracerail proxy --policies policies.yaml -- npx payments-server</span></div>' +
+        '<div class="line"><span class="out-green">✓ proxy listening · policies loaded · audit chain verified</span></div>' +
+        '<div class="line">&nbsp;</div>' +
+        '<div class="line"><span class="pill pill-allow">ALLOW</span><span class="meta">payments.lookup · invoice #8841</span></div>' +
+        '<div class="line"><span class="pill pill-deny">DENY</span><span class="meta">payments.payout · blocked by policy</span></div>' +
+        '<div class="line"><span class="pill pill-held">HELD</span><span class="meta">payments.refund $420.00 · awaiting approval</span></div>' +
+        '<div class="line">&nbsp;</div>' +
+        '<div class="line"><span class="prompt">$</span> <span class="cmd">tracerail verify</span></div>' +
+        '<div class="line"><span class="out-green">OK: audit chain intact</span></div>';
+
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { el.innerHTML = finalHTML; return; }
+
+      var cmd = 'tracerail proxy --policies policies.yaml -- npx payments-server';
+      var timers = [];
+      function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+      function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+
+      function run() {
+        clearTimers();
+        el.innerHTML =
+          '<div class="line"><span class="comment"># Wrap any MCP server. No agent code changes.</span></div>' +
+          '<div class="line"><span class="prompt">$</span> <span class="cmd" id="typed"></span><span class="caret"></span></div>';
+        var typed = document.getElementById('typed');
+        var i = 0;
+        function type() {
+          if (i <= cmd.length) {
+            typed.textContent = cmd.slice(0, i);
+            i++;
+            at(28, type);
+          } else {
+            reveal();
+          }
+        }
+        function reveal() {
+          // remove caret, append lines progressively
+          at(450, function () { add('<span class="out-green">✓ proxy listening · policies loaded · audit chain verified</span>'); });
+          at(900, function () { add('&nbsp;'); });
+          at(1150, function () { add('<span class="pill pill-allow">ALLOW</span><span class="meta">payments.lookup · invoice #8841</span>'); });
+          at(1600, function () { add('<span class="pill pill-deny">DENY</span><span class="meta">payments.payout · blocked by policy</span>'); });
+          at(2050, function () { add('<span class="pill pill-held">HELD</span><span class="meta">payments.refund $420.00 · awaiting approval</span>'); });
+          at(2750, function () { add('&nbsp;'); add('<span class="prompt">$</span> <span class="cmd">tracerail verify</span>'); });
+          at(3300, function () { add('<span class="out-green">OK: audit chain intact</span>'); });
+          at(6300, run); // pause, then loop
+        }
+        function add(html) {
+          var caret = el.querySelector('.caret');
+          if (caret) caret.parentNode.removeChild(caret);
+          var d = document.createElement('div');
+          d.className = 'line';
+          d.innerHTML = html;
+          el.appendChild(d);
+        }
+        type();
+      }
+      run();
     })();
   </script>
 </body>
