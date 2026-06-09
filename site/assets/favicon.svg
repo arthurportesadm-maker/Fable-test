@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" role="img" aria-label="tracerail">
+  <!-- dark rounded background -->
+  <rect x="0" y="0" width="64" height="64" rx="12" fill="#0B1220"/>
+
+  <!-- connector links (hash chain) -->
+  <line x1="22" y1="44" x2="30" y2="36" stroke="#8B98AC" stroke-width="3" stroke-linecap="round"/>
+  <line x1="40" y1="30" x2="48" y2="22" stroke="#8B98AC" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- block 1 (lowest) -->
+  <rect x="10" y="40" width="20" height="16" rx="4.5" fill="#131C2E" stroke="#8B98AC" stroke-width="2.5"/>
+  <!-- block 2 (middle) -->
+  <rect x="22" y="26" width="20" height="16" rx="4.5" fill="#131C2E" stroke="#8B98AC" stroke-width="2.5"/>
+  <!-- block 3 (top, verified) -->
+  <rect x="34" y="10" width="20" height="16" rx="4.5" fill="#2EE6A6"/>
+  <!-- check mark -->
+  <path d="M39 18 l3.5 3.5 l6 -7.5" fill="none" stroke="#0B1220" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

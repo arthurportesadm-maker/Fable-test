@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" width="560" height="120" fill="none" role="img" aria-label="tracerail">
+  <!-- icon: hash chain as an ascending rail of three linked blocks -->
+  <g>
+    <!-- connector links (short hash dashes between blocks) -->
+    <line x1="42" y1="80" x2="58" y2="64" stroke="#8B98AC" stroke-width="4" stroke-linecap="round"/>
+    <line x1="92" y1="56" x2="108" y2="40" stroke="#8B98AC" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- block 1 (lowest) -->
+    <rect x="14" y="74" width="34" height="28" rx="7" fill="#131C2E" stroke="#8B98AC" stroke-width="3"/>
+    <!-- block 2 (middle) -->
+    <rect x="64" y="50" width="34" height="28" rx="7" fill="#131C2E" stroke="#8B98AC" stroke-width="3"/>
+    <!-- block 3 (top, verified) -->
+    <rect x="114" y="26" width="34" height="28" rx="7" fill="#2EE6A6"/>
+    <!-- check mark inside verified block -->
+    <path d="M122 40.5 l5 5 l9 -11" fill="none" stroke="#0B1220" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="182" y="76" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="54" font-weight="500" letter-spacing="-1" fill="#E6EDF7">tracerail</text>
+</svg>

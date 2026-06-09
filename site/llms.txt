@@ -1,0 +1,13 @@
+# Tracerail
+
+> Tracerail is an open-source control plane for AI agent actions. It runs as a drop-in MCP (Model Context Protocol) proxy that sits between your agent and its tools, adding a tamper-evident hash-chained audit trail, a declarative YAML policy engine (allow/deny rules, spend caps, rate caps), and human approval gates for sensitive actions — without changing a line of agent code. It is licensed under Apache-2.0 and can be self-hosted.
+
+## Docs
+
+- [README](https://github.com/arthurportesadm-maker/fable-test/blob/main/README.md): Overview, quickstart, and the five-minute drop-in proxy setup.
+- [Policies example](https://github.com/arthurportesadm-maker/fable-test/blob/main/policies.yaml): Annotated YAML showing allow/deny rules, spend caps, rate caps, and approval gates.
+
+## Optional
+
+- [PITCH](https://github.com/arthurportesadm-maker/fable-test/blob/main/PITCH.md): Why a control plane for agent actions matters and how Tracerail fits compliance needs (EU AI Act Art. 12, SOC 2 CC7).
+- [GTM](https://github.com/arthurportesadm-maker/fable-test/blob/main/GTM.md): Go-to-market notes and design-partnership context for teams evaluating Tracerail.
